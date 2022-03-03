@@ -1,6 +1,8 @@
 package main
 
 import (
+	"fmt"
+	"go.uber.org/automaxprocs/maxprocs"
 	"log"
 	"os"
 	"os/signal"
@@ -11,6 +13,11 @@ import (
 var build = "develop"
 
 func main() {
+	//set processors
+	if _, err := maxprocs.Set(); err != nil {
+		fmt.Println("maxprocs: %w", err)
+		os.Exit(1)
+	}
 	g := runtime.GOMAXPROCS(0)
 
 	log.Printf("service started build[%s] CPU[%d]", build, g)

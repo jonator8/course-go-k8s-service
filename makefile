@@ -59,3 +59,11 @@ kind-update-apply: all kind-load kind-apply
 
 kind-describe:
 	kubectl describe pod -l app=service
+
+#=======================================================================================================================
+# Support
+
+tidy:
+	go mod tidy
+	go mod vendor
+
